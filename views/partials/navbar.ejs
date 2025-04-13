@@ -1,0 +1,229 @@
+<%- include("header.ejs") %>
+<style>
+    /* 🌌 Background Animation */
+body {
+    background: radial-gradient(circle, #282828, #393939);
+    background-size: 300% 300%;
+    animation: gradientAnimation 10s ease-in-out infinite;
+    color: #FFFFFF;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🌐 Navbar */
+.navbar {
+    background: linear-gradient(to right, #121212, #1F1F1F);
+    padding: 12px 20px;
+    transition: all 0.3s ease-in-out;
+    border-bottom: 2px solid #FF0000;
+    z-index: 1000;
+}
+
+/* 🧠 Brand Logo & Name */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #FF0000;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+.navbar-brand:hover {
+    color: #FF4E4E;
+}
+.navbar-brand img {
+    height: 50px;
+    margin-right: 12px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+.navbar-brand img:hover {
+    transform: scale(1.1);
+}
+
+/* 🧭 Nav Links */
+.navbar-nav .nav-item .nav-link {
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 10px 18px;
+    transition: color 0.3s ease-in-out;
+    text-transform: capitalize;
+    position: relative;
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color: #FF4E4E;
+}
+.navbar-nav .nav-item .nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #FF0000;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.navbar-nav .nav-item .nav-link:hover::after {
+    width: 60%;
+}
+
+/* 🔽 Dropdown Styling */
+.dropdown-menu {
+    background: #1F1F1F;
+    border-radius: 8px;
+    border: 1px solid #FF0000;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transform: scale(0.95);
+    display: none;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+.dropdown-menu .dropdown-item {
+    color: #FFFFFF;
+    font-size: 1rem;
+    padding: 10px 15px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+.dropdown-menu .dropdown-item:hover {
+    background: #FF4E4E;
+    color: #FFFFFF;
+    border-radius: 5px;
+    transform: translateX(5px);
+}
+
+/* 📱 Responsive Styles */
+@media (max-width: 991px) {
+    .navbar {
+        padding: 10px;
+    }
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    .navbar-brand img {
+        height: 40px;
+    }
+    .navbar-nav {
+        text-align: center;
+        background: #1F1F1F;
+        padding: 10px;
+        border-radius: 10px;
+        width: 100%;
+    }
+    .navbar-nav .nav-item {
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    .navbar-nav .nav-item .nav-link {
+        display: block;
+        padding: 12px;
+        font-size: 1rem;
+    }
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+        text-align: center;
+        transform: none !important;
+        display: none;
+    }
+    .nav-item.dropdown:focus-within .dropdown-menu {
+        display: block;
+    }
+    .navbar-toggler {
+        background-color: #FF4E4E;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+    .navbar-brand img {
+        height: 35px;
+    }
+    .navbar-toggler {
+        height: 35px;
+        width: 35px;
+        background-color: transparent;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    .navbar-brand img {
+        height: 30px;
+    }
+}
+</style>
+
+
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-secondary">
+    <div class="container">
+        <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="/">
+            <img src="/images/logoSocialSense.png" alt="SocialSense Logo" class="me-2" style="height: 40px; border-radius: 50%;" />
+            SocialSense
+        </a>
+
+        <style>
+            .navbar-toggler {
+                border: 1px solid #FFFFFF;
+                background-color: transparent;
+            }
+            .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+            }
+            .nav-link {
+                color: #FFFFFF;
+            }
+            .nav-link:hover {
+                color: #FF4E4E;
+            }
+            .dropdown-menu {
+                background-color: #1F1F1F;
+            }
+            .dropdown-item {
+                color: #FFFFFF;
+            }
+            .dropdown-item:hover {
+                background-color: #121212;
+                color: #FF4E4E;
+            }
+        </style>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/analysis">Analysis</a></li>
+                <li class="nav-item"><a class="nav-link" href="/invest">Investable or Not</a></li>
+                <li class="nav-item"><a class="nav-link" href="/resources">Resources</a></li>
+                <li class="nav-item"><a class="nav-link" href="/kids">Kids Section</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About & FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
