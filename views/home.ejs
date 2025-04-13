@@ -1,0 +1,246 @@
+<%- include("./partials/navbar.ejs") %>
+<style>
+    .text-highlight {
+        color: #00BFFF;
+    }
+    
+    .hero-img {
+        filter: drop-shadow(0 0 8px #FF4E4E);
+        border-radius: 12px;
+        transition: transform 0.4s ease-in-out;
+    }
+    
+    .hero-img:hover {
+        transform: scale(1.03);
+    }
+    
+    .btn-danger {
+        background-color: #FF0000;
+        border: none;
+    }
+    .btn-danger:hover {
+        background-color: #ea0202;
+    }
+    
+    .btn-outline-light {
+        border-color: #FFFFFF;
+        color: #FFFFFF;
+    }
+    .btn-outline-light:hover {
+        background-color: #FF0000;
+        color: #FFFFFF;
+        border-color: #FF0000;
+    }   
+    @media (max-width: 991px) {
+        .hero-img {
+          width: 100%;
+          max-width: 100%;
+          height: auto;
+          margin: 0 auto;
+        }
+      }
+    
+
+.features {
+    padding: 60px 0;
+  }
+  
+
+  .features .col-lg-3 {
+    margin-bottom: 40px;
+  }
+  
+  .features img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #FF4E4E;
+    box-shadow: 0 0 6px #FF4E4E;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .features img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px #FF4E4E;
+  }
+  
+  .features h2 {
+    color: #FFFFFF;
+    margin-top: 15px;
+    font-size: 1.25rem;
+  }
+  
+  .features p {
+    color: #A0A0A0; 
+    font-size: 0.95rem;
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+  
+  .highlight {
+    color: #FF0000; /* YouTube Red */
+    font-weight: 600;
+  }
+  
+  .benefit-box {
+    background-color: #1F1F1F; /* Dark Gray */
+    border: 1px solid #FF4E4E; /* Soft Red */
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    color: #FFFFFF; /* Primary Text */
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .benefit-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.35); /* YouTube Red Glow */
+  }
+  
+  .icon-box {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    background-color: #FF0000; /* YouTube Red */
+    padding: 16px;
+    border-radius: 50%;
+    color: #FFFFFF; /* Primary Text */
+    box-shadow: 0 0 15px #FF4E4E; /* Soft Red Glow */
+    transition: transform 0.3s ease;
+  }
+  
+  .benefit-box:hover .icon-box {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .benefit-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #FFFFFF; /* Primary Text */
+  }
+  
+  .benefit-text {
+    font-size: 0.95rem;
+    color: #A0A0A0; /* Cool Gray */
+  }
+  
+  @media (max-width: 576px) {
+    .icon-box {
+      font-size: 2.5rem;
+      padding: 14px;
+    }
+    .benefit-title {
+      font-size: 1.25rem;
+    }
+  }
+
+</style>
+<div class="container col-xxl-10 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-12 col-sm-10 col-lg-6 text-center">
+            <img src="/images/home.webp" class="img-fluid hero-img" alt="Content Creation Illustration" loading="lazy">
+          </div>          
+      <div class="col-lg-6 text-light">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Taking <span class="text-highlight">Content Creation</span> to Next Level</h1>
+        <p class="lead">Analyze YouTube video's feedback with AI, track meaningful metrics, and get a guide for better content creation. Explore AI-powered tools, games, and resources that uplift digital creativity.</p>
+        <div class="d-grid gap-3 d-md-flex justify-content-md-start">
+          <a href="/analysis" class="btn btn-danger btn-lg px-4">Start Analysis</a>
+          <a href="/resources" class="btn btn-outline-light btn-lg px-4">Explore Resources</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="container text-center mt-3 pt-3 mb-3 features">
+    <h1 class="mb-5">What We <span class="highlight ">Offer</span>?</h1>
+    <div class="row g-2 mt-3">
+      
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <a href="/analysis">
+            <img src="images/logoSocialSense.png" alt="Comment Analysis" width="160" height="160" class="feature-icon rounded-circle">
+          </a>
+          <h3 class="feature-title mt-3">Comment Analyzer</h3>
+          <p class="feature-text">Get <b>insights </b>from YouTube comments using our ML model.</p>
+        </div>
+      </div>
+  
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <a href="/investable">
+            <img src="images/logoSocialSense.png" alt="Invest Decision" width="160" height="160" class="feature-icon rounded-circle">
+          </a>
+          <h3 class="feature-title mt-3">Investability Check</h3>
+          <p class="feature-text"><b>Invest</b> smarter with our metrics-driven suggestion engine.</p>
+        </div>
+      </div>
+  
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <a href="/resources">
+            <img src="images/logoSocialSense.png" alt="Resources" class="feature-icon rounded-circle" width="160" height="160">
+          </a>
+          <h3 class="feature-title mt-3">Content Resources</h3>
+          <p class="feature-text">Handpicked <b>books, articles, videos, and tips</b> to help creators.</p>
+        </div>
+      </div>
+  
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <a href="/kids">
+            <img src="images/logoSocialSense.png" alt="Kids Corner" width="160" height="160" class="feature-icon rounded-circle">
+          </a>
+          <h3 class="feature-title mt-3"><span class="highlight">Kids Corner</h3>
+          <p class="feature-text">Fun <b>language-based games</b> to make learning playful.</p>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+
+  <section class="benefits-section">
+    <div class="container">
+      <h2 class="text-center text-light mb-5">Who Can Benefit from <span class="highlight">SocialSense</span>?</h2>
+      <div class="row justify-content-center g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <div class="benefit-box">
+            <div class="icon-box">
+              🎥
+            </div>
+            <h4 class="benefit-title">YouTubers</h4>
+            <p class="benefit-text">Get more understanding of the <b>user's feedback </b>through comments analysis with AI-powered feedback insights.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="benefit-box">
+            <div class="icon-box">
+              📈
+            </div>
+            <h4 class="benefit-title">Marketers and Investors</h4>
+            <p class="benefit-text">Track real-time <b>audience tone</b>, campaign reactions, and trending content sentiment and optimize the content.</p>
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-lg-4">
+          <div class="benefit-box">
+            <div class="icon-box">
+              🧑‍🏫
+            </div>
+            <h4 class="benefit-title">Educators</h4>
+            <p class="benefit-text">Discover how your educational content is <b>received and understood</b>, improving clarity and reach.</p>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+
+<%- include("./partials/footer.ejs") %>
