@@ -1,0 +1,109 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/navbar.ejs") %>
+
+<style>
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .contact-box {
+      background-color: #1F1F1F;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 95%;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      color: #f25c05;
+      margin-right: 0.5rem;
+
+    }
+
+    .form-control::placeholder {
+      color: #aaa;
+    }
+
+    .btn-submit {
+      background-color: #f25c05;
+      color: white;
+      border: none;
+    }
+
+    .btn-submit:hover {
+      background-color: #d14f04;
+    }
+    .form-input-area{
+        background-color: #1F1F1F;
+        color: #fff;
+        border: 1px solid #444;
+        caret-color: #fff;
+    }
+    .form-input-area:focus {
+        background-color: #1F1F1F !important;
+        color: #fff !important;
+        border-color: #f25c05 !important; /* optional: orange border on focus */
+        box-shadow: none !important; /* remove Bootstrap's blue outline */
+    }
+  </style>
+<body>
+  <div class="wrapper">
+    <div class="contact-box container px-4">
+      <div class="row ">
+        <!-- Contact Info -->
+        <div class="col-12 col-md-6 mb-4">
+          <h2 class="fw-bold">Contact Us</h2>
+          <p>Feel free to use the form or drop us an email.</p>
+          <div class="contact-info mt-4">
+            <p><i class="bi bi-envelope-fill"></i> socialsensejmi@gmail.com</p>
+            <p><i class="bi bi-geo-alt-fill"></i> FET building, Jamia Millia Islamai<br> Okhla Vihar,Jamia Nagar, New Delhi</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-12 col-md-6">
+          <form action="/contact" method="POST" >
+            <div class="row mb-3">
+              <div class="col">
+                <input type="text" class="form-control form-input-area" name="fName" placeholder="First" required/>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control form-input-area" name="lName" placeholder="Last" required/>
+              </div>
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control form-input-area" name="email" placeholder="example@email.com" required/>
+            </div>
+            <div class="mb-3">
+                <select class="form-select form-input-area" name="category" required>
+                  <option value="" disabled selected>Select a category</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="general Issue">General Issues</option>
+                  <option value="website Issue">website Issues</option>
+                  <option value="other">others..</option>
+                </select>
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control form-input-area" rows="5" name="message" placeholder="Type your message ..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-submit px-4 py-2">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+
+
+<%- include("partials/footer.ejs") %>
+</html>
