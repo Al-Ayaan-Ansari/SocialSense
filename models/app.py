@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify, send_file
 from scraping import fetch_top_comments
-from predictor import predict_categories
+from predictor import predict_categories, generate_wordclouds
 import pandas as pd
 from io import BytesIO
 from flask_cors import CORS
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="models/static")
 CORS(app)
 
 # Global in-memory file store
@@ -28,16 +29,19 @@ def predict():
         comments_df, video_id = fetch_top_comments(video_link)
         result_df, summary = predict_categories(comments_df)
 
-        # Store CSV in memory instead of saving to disk
         in_memory_csv = BytesIO()
         result_df.to_csv(in_memory_csv, index=False)
-        in_memory_csv.seek(0)  # Move to start of file
+        in_memory_csv.seek(0) 
+        
+        # Generate wordclouds
+        wordclouds = generate_wordclouds(result_df)
 
         response = {
             "video_id": video_id,
             "total_comments": summary["total"],
             "breakdown": summary["breakdown"],
-            "download_link": "/download"
+            "download_link": "/download",
+            "wordclouds": wordclouds
         }
 
         return jsonify(response)
@@ -45,7 +49,6 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/download", methods=["GET"])
 @app.route("/download", methods=["GET"])
 def download_csv():
     global in_memory_csv

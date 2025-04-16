@@ -6,3 +6,5 @@ nltk
 joblib
 flask_cors
 dotenv
+wordcloud 
+matplotlib

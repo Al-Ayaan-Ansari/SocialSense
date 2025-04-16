@@ -165,7 +165,14 @@
     <h4 class="mb-4">📊 Comment Classification Results</h4>
     <div style="max-width: 400px; margin: 0 auto;">
       <canvas id="categoryChart" width="400" height="400"></canvas>
-    </div>    
+    </div>  
+
+    <!-- Wrodcloud -->
+    <div id="wordcloudsSection" class="mt-5 text-light text-center" style="display:none;">
+      <h4 class="mb-4">☁️ Word Clouds by Category</h4>
+      <div id="wordcloudsContainer" class="row justify-content-center"></div>
+    </div>
+    
     <div class="mt-4">
       <a id="downloadLink"
       class="btn btn-outline-light"
@@ -176,9 +183,7 @@
       onmouseout="this.style.color='white'; this.style.backgroundColor='transparent';">
      Download CSV
    </a>
-   
     </div>
-    
   </div>
   
   
@@ -247,6 +252,8 @@
 
       const { breakdown, download_link } = data;
       showChart(breakdown);
+      renderTopComments(data.top_comments);
+      renderWordclouds(data.wordclouds);
 
       const link = document.getElementById("downloadLink");
       link.href = `http://localhost:5000${download_link}`;
@@ -264,7 +271,6 @@
   });
 
   function extractVideoId(url) {
-    // Handles full links or just the ID
     const regex = /(?:v=|\/)([0-9A-Za-z_-]{11})/;
     const match = url.match(regex);
     return match ? match[1] : (url.length === 11 ? url : null);
@@ -302,6 +308,33 @@
       }
     });
   }
+  // wordcloud
+  function renderWordclouds(wordclouds) {
+    const container = document.getElementById("wordcloudsContainer");
+    container.innerHTML = "";
+  
+    for (const [category, url] of Object.entries(wordclouds)) {
+      const col = document.createElement("div");
+      col.className = "col-md-4 mb-4";
+  
+      const title = document.createElement("h5");
+      title.textContent = `☁️ ${category}`;
+      title.className = "mb-2";
+  
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = `${category} Word Cloud`;
+      img.className = "img-fluid rounded shadow";
+  
+      col.appendChild(title);
+      col.appendChild(img);
+      container.appendChild(col);
+    }
+  
+    document.getElementById("wordcloudsSection").style.display = "block";
+  }
+  
+  
 </script>
 
 <%- include("partials/footer.ejs") %>
