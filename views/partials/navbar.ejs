@@ -1,6 +1,5 @@
 <%- include("header.ejs") %>
 <style>
-    /* 🌌 Background Animation */
 body {
     background: radial-gradient(circle, #282828, #393939);
     background-size: 300% 300%;
@@ -16,7 +15,6 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* 🌐 Navbar */
 .navbar {
     background: linear-gradient(to right, #121212, #1F1F1F);
     padding: 12px 20px;
@@ -25,7 +23,6 @@ body {
     z-index: 1000;
 }
 
-/* 🧠 Brand Logo & Name */
 .navbar-brand {
     display: flex;
     align-items: center;
@@ -48,7 +45,6 @@ body {
     transform: scale(1.1);
 }
 
-/* 🧭 Nav Links */
 .navbar-nav .nav-item .nav-link {
     color: #FFFFFF;
     font-size: 1.1rem;
@@ -77,7 +73,6 @@ body {
     width: 60%;
 }
 
-/* 🔽 Dropdown Styling */
 .dropdown-menu {
     background: #1F1F1F;
     border-radius: 8px;
@@ -106,7 +101,6 @@ body {
     transform: translateX(5px);
 }
 
-/* 📱 Responsive Styles */
 @media (max-width: 991px) {
     .navbar {
         padding: 10px;
@@ -174,8 +168,30 @@ body {
         height: 30px;
     }
 }
+.navbar-toggler {
+    border: 1px solid #FFFFFF;
+    background-color: transparent;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.nav-link {
+    color: #FFFFFF;
+}
+.nav-link:hover {
+    color: #FF4E4E;
+}
+.dropdown-menu {
+    background-color: #1F1F1F;
+}
+.dropdown-item {
+    color: #FFFFFF;
+}
+.dropdown-item:hover {
+    background-color: #121212;
+    color: #FF4E4E;
+}
 </style>
-
 
 <nav class="navbar navbar-expand-lg bg-dark border-bottom border-secondary">
     <div class="container">
@@ -183,32 +199,6 @@ body {
             <img src="/images/logoSocialSense.png" alt="SocialSense Logo" class="me-2" style="height: 40px; border-radius: 50%;" />
             SocialSense
         </a>
-
-        <style>
-            .navbar-toggler {
-                border: 1px solid #FFFFFF;
-                background-color: transparent;
-            }
-            .navbar-toggler-icon {
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-            }
-            .nav-link {
-                color: #FFFFFF;
-            }
-            .nav-link:hover {
-                color: #FF4E4E;
-            }
-            .dropdown-menu {
-                background-color: #1F1F1F;
-            }
-            .dropdown-item {
-                color: #FFFFFF;
-            }
-            .dropdown-item:hover {
-                background-color: #121212;
-                color: #FF4E4E;
-            }
-        </style>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>

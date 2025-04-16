@@ -1,0 +1,281 @@
+<%- include("partials/navbar.ejs") %>
+
+<style>
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .highlight {
+      color: #FF0000;
+    }
+  
+    .lead {
+      color: #cccccc;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-box {
+      background-color: #181818;
+      width: 100%;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 15px 30px rgba(255, 0, 0, 0.2);
+    }
+  
+    .input-group {
+      display: flex;
+      flex-wrap: nowrap;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: #1F1F1F;
+      box-shadow: inset 0 0 0 2px #FF0000;
+    }
+  
+    .form-control {
+      flex-grow: 1;
+      border: none;
+      background-color: #1F1F1F;
+      padding: 16px 20px;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+  
+    .form-control::placeholder {
+      color: #888888;
+    }
+  
+    .form-control:focus {
+      outline: none;
+      background-color: #1F1F1F;
+      color: #fff;
+
+    }
+  
+    .btn-danger {
+      background-color: #FF0000;
+      border: none;
+      padding: 0 24px;
+      color: #fff;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+  
+    .btn-danger:hover {
+      background-color: #b91212;
+    }
+  
+    .text-muted {
+      color: #aaaaaa !important;
+    }
+  
+    .info-box {
+      background-color: #181818;
+      padding: 30px 20px;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.08);
+    }
+  
+    .info-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);
+    }
+  
+    .emoji {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+  
+    .info-title {
+      font-size: 1.1rem;
+      color: #00BFFF;
+      margin-bottom: 10px;
+    }
+  
+    .info-text {
+      font-size: 0.95rem;
+      color: #bbbbbb;
+    }
+  
+    @media (max-width: 768px) {
+      .input-group {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+  
+      .form-control {
+        border-radius: 12px 12px 0 0;
+      }
+  
+      .btn-danger {
+        border-radius: 0 0 12px 12px;
+        width: 100%;
+      }
+    }
+  </style>
+  
+
+<section class="analysis-hero text-center text-light py-5">
+  <div class="container">
+    <h1 class="display-5 fw-bold mb-3">Analyze Your <span class="highlight">YouTube Video</span></h1>
+    <p class="lead">Uncover how your audience really feels. Get instant sentiment, tone, and insight using AI-powered feedback analysis.</p>
+  </div>
+</section>
+
+<section class="analysis-form-section py-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-8">
+        <div class="form-box p-4">
+          <h3 class="text-center mb-4">🔍 Enter YouTube Video Link or ID</h3>
+          <form id="analyzeForm">
+            <div class="input-group input-group-lg mb-3">
+              <input type="text" class="form-control" id="videoInput" placeholder="e.g. https://www.youtube.com/watch?v=VIDEO_ID" required>
+              <button type="submit" class="btn btn-danger">Analyze</button>
+            </div>
+            <p class="text-muted text-center small">We'll fetch the top 200 comments and use AI to break down the response.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="loader" class="text-center mt-4" style="display:none;">
+    <div class="spinner-border text-danger" role="status"></div>
+    <p class="mt-2 text-light">Analyzing comments, please wait...</p>
+  </div>
+  
+  <div id="resultsSection" class="mt-5 text-center text-light" style="display:none;">
+    <h4 class="mb-4">📊 Comment Classification Results</h4>
+    <div style="max-width: 400px; margin: 0 auto;">
+      <canvas id="categoryChart" width="400" height="400"></canvas>
+    </div>    
+    <div class="mt-4">
+      <a id="downloadLink" class="btn btn-outline-light" href="#" download="batch_predictions.csv" style="display:none;">Download CSV</a>
+    </div>
+  </div>
+  
+  
+  <div class="row mt-5 gy-4 text-center">
+    <div class="col-md-4">
+      <div class="info-box">
+        <div class="emoji">📊</div>
+        <h5 class="info-title">Sentiment Breakdown</h5>
+        <p class="info-text">See how positive, negative, or neutral your audience really is.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="info-box">
+        <div class="emoji">🗣️</div>
+        <h5 class="info-title">Tone Detection</h5>
+        <p class="info-text">Understand the underlying tone: sarcasm, support, or hate.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="info-box">
+        <div class="emoji">📌</div>
+        <h5 class="info-title">Top Insights</h5>
+        <p class="info-text">Get actionable advice based on recurring audience themes.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.getElementById("analyzeForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    
+    const videoInput = document.getElementById("videoInput").value.trim();
+    const videoID = extractVideoId(videoInput);
+
+    if (!videoID) {
+      alert("Please enter a valid YouTube video link or ID.");
+      return;
+    }
+
+    // Show loader
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("resultsSection").style.display = "none";
+    document.getElementById("downloadLink").style.display = "none";
+
+    try {
+      const response = await fetch("http://localhost:5000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ video_link: `https://www.youtube.com/watch?v=${videoID}` })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        alert("Error: " + data.error);
+        document.getElementById("loader").style.display = "none";
+        return;
+      }
+
+      const { breakdown, download_link } = data;
+      showChart(breakdown);
+
+      const link = document.getElementById("downloadLink");
+      link.href = `http://localhost:5000${download_link}`;
+      link.setAttribute("download", "batch_predictions.csv");
+      link.style.display = "inline-block";
+
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("resultsSection").style.display = "block";
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+      document.getElementById("loader").style.display = "none";
+    }
+  });
+
+  function extractVideoId(url) {
+    // Handles full links or just the ID
+    const regex = /(?:v=|\/)([0-9A-Za-z_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : (url.length === 11 ? url : null);
+  }
+
+  let chartInstance;
+
+  function showChart(distribution) {
+    const ctx = document.getElementById("categoryChart").getContext("2d");
+    const labels = Object.keys(distribution);
+    const values = Object.values(distribution);
+    const colors = ["#f94144", "#277da1", "#f9c74f"];
+
+    if (chartInstance) chartInstance.destroy(); // Destroy old if exists
+
+    chartInstance = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colors,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: 'white'
+            }
+          }
+        }
+      }
+    });
+  }
+</script>
+
+<%- include("partials/footer.ejs") %>
