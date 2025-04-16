@@ -1,8 +1,16 @@
 import googleapiclient.discovery
 import pandas as pd
 import re
+import os
+from dotenv import load_dotenv
 
-DEVELOPER_KEY = "AIzaSyCK_E-QoHbhYPWDtZKWhA-B5kmX-FFo9ws"
+load_dotenv()
+
+DEVELOPER_KEY = os.getenv("DEVELOPER_KEY")
+
+if not DEVELOPER_KEY:
+    raise ValueError("Missing API KEY in .env file")
+
 api_service_name = "youtube"
 api_version = "v3"
 

@@ -130,15 +130,31 @@
         <div class="form-box p-4">
           <h3 class="text-center mb-4">🔍 Enter YouTube Video Link or ID</h3>
           <form id="analyzeForm">
-            <div class="input-group input-group-lg mb-3">
-              <input type="text" class="form-control" id="videoInput" placeholder="e.g. https://www.youtube.com/watch?v=VIDEO_ID" required>
-              <button type="submit" class="btn btn-danger">Analyze</button>
+            <div class="row g-2 mb-3">
+              <div class="col-12 col-md-9">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="videoInput"
+                  placeholder="e.g. https://www.youtube.com/watch?v=VIDEO_ID"
+                  required
+                />
+              </div>
+              <div class="col-12 col-md-3 d-grid">
+                <button type="submit" class="btn btn-danger btn-lg w-100">
+                  Analyze
+                </button>
+              </div>
             </div>
-            <p class="text-muted text-center small">We'll fetch the top 200 comments and use AI to break down the response.</p>
+            <p class="text-muted text-center small">
+              We'll fetch the top 200 comments and use AI to break down the response.
+            </p>
           </form>
         </div>
       </div>
     </div>
+  </div>
+  
 
     <div id="loader" class="text-center mt-4" style="display:none;">
     <div class="spinner-border text-danger" role="status"></div>
@@ -151,8 +167,18 @@
       <canvas id="categoryChart" width="400" height="400"></canvas>
     </div>    
     <div class="mt-4">
-      <a id="downloadLink" class="btn btn-outline-light" href="#" download="batch_predictions.csv" style="display:none;">Download CSV</a>
+      <a id="downloadLink"
+      class="btn btn-outline-light"
+      href="#"
+      download="batch_predictions.csv"
+      style="display: none; padding: 10px 20px; border: 1px solid #fff; border-radius: 5px; color: #ffffff; text-decoration: none; transition: color 0.3s, background-color 0.3s; cursor: pointer;"
+      onmouseover="this.style.color='white'; this.style.backgroundColor='red';"
+      onmouseout="this.style.color='white'; this.style.backgroundColor='transparent';">
+     Download CSV
+   </a>
+   
     </div>
+    
   </div>
   
   
