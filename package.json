@@ -4,24 +4,24 @@
     "description": "",
     "homepage": "https://github.com/Al-Ayaan-Ansari/SocialSense#readme",
     "bugs": {
-      "url": "https://github.com/Al-Ayaan-Ansari/SocialSense/issues"
+        "url": "https://github.com/Al-Ayaan-Ansari/SocialSense/issues"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Al-Ayaan-Ansari/SocialSense.git"
+        "type": "git",
+        "url": "git+https://github.com/Al-Ayaan-Ansari/SocialSense.git"
     },
     "license": "ISC",
     "author": "",
     "type": "module",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-      "body-parser": "^2.2.0",
-      "dotenv": "^16.5.0",
-      "ejs": "^3.1.10",
-      "express": "^5.1.0",
-      "pg": "^8.14.1"
+        "body-parser": "^2.2.0",
+        "dotenv": "^16.5.0",
+        "ejs": "^3.1.10",
+        "express": "^5.1.0",
+        "pg": "^8.14.1"
     }
-  }
+}

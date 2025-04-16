@@ -7,7 +7,7 @@ dotenv.config();
 
 const { Pool } = pg;
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 
 
@@ -29,7 +29,7 @@ app.get("/analysis", (req, res) => {
 });
 
 const members = [{name:"AL AYAAN ANSARI", role:"Full Stack Developer",img:"/images/logoSocialSense.png"},
-    {name:"Mohd Adnan Khan", role:"M: Engineer",img:"/images/logoSocialSense.png"},
+    {name:"Mohd Adnan Khan", role:"ML Engineer",img:"/images/logoSocialSense.png"},
     {name:"Mohd Ashrah", role:"ML Engineer",img:"/images/logoSocialSense.png"},
     {name:"Mohd Danish", role:"Back-end Developer",img:"/images/logoSocialSense.png"},
     {name:"Mohd Anas Ansari", role:"Front-end Developer",img:"/images/logoSocialSense.png"}];
