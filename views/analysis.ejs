@@ -69,52 +69,133 @@
       color: #aaaaaa !important;
     }
   
+    #info-section {
+      margin-top: 80px;
+      padding: 40px 20px;
+      background: #121212;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 1s ease forwards;
+    }
+
     .info-box {
-      background-color: #181818;
-      padding: 30px 20px;
+      background: #1c1c1e;
       border-radius: 16px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.08);
+      padding: 30px 20px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      height: 100%;
     }
-  
+
     .info-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px 4px rgba(255, 0, 0, 0.4);
     }
-  
-    .emoji {
-      font-size: 2.2rem;
+
+    .info-box .emoji {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .info-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #f5f5f5;
       margin-bottom: 15px;
     }
-  
-    .info-title {
-      font-size: 1.1rem;
-      color: #00BFFF;
-      margin-bottom: 10px;
-    }
-  
+
     .info-text {
-      font-size: 0.95rem;
-      color: #bbbbbb;
+      font-size: 1rem;
+      color: #ccc;
+      line-height: 1.6;
     }
-  
+
+    #wordclouds-container {
+      margin-top: 80px;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    #wordclouds-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 50px;
+      color: #ffffff;
+      text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.3);
+    }
+
+    #wordclouds {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      justify-items: center;
+      padding: 0 20px;
+    }
+
+    .wordcloud-card {
+      background: #1c1c1e;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .wordcloud-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px 5px rgba(255, 0, 0, 0.4); 
+    }
+
+    .wordcloud-card h4 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f5f5f5;
+    }
+
+    .wordcloud-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #555;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .wordcloud-card img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+    }
+
     @media (max-width: 768px) {
       .input-group {
         flex-direction: column;
         border-radius: 12px;
       }
-  
+
       .form-control {
         border-radius: 12px 12px 0 0;
       }
-  
+
       .btn-danger {
         border-radius: 0 0 12px 12px;
         width: 100%;
       }
     }
-  </style>
-  
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+</style>  
 
 <section class="analysis-hero text-center text-light py-5">
   <div class="container">
@@ -154,68 +235,72 @@
       </div>
     </div>
   </div>
-  
 
-    <div id="loader" class="text-center mt-4" style="display:none;">
+  <div id="loader" class="text-center mt-4" style="display:none;">
     <div class="spinner-border text-danger" role="status"></div>
     <p class="mt-2 text-light">Analyzing comments, please wait...</p>
   </div>
-  
+
   <div id="resultsSection" class="mt-5 text-center text-light" style="display:none;">
     <h4 class="mb-4">📊 Comment Classification Results</h4>
     <div style="max-width: 400px; margin: 0 auto;">
       <canvas id="categoryChart" width="400" height="400"></canvas>
-    </div>  
-
-    <!-- Wrodcloud -->
-    <div id="wordcloudsSection" class="mt-5 text-light text-center" style="display:none;">
-      <h4 class="mb-4">☁️ Word Clouds by Category</h4>
-      <div id="wordcloudsContainer" class="row justify-content-center"></div>
-    </div>
-    
+    </div>    
     <div class="mt-4">
       <a id="downloadLink"
-      class="btn btn-outline-light"
-      href="#"
-      download="batch_predictions.csv"
-      style="display: none; padding: 10px 20px; border: 1px solid #fff; border-radius: 5px; color: #ffffff; text-decoration: none; transition: color 0.3s, background-color 0.3s; cursor: pointer;"
-      onmouseover="this.style.color='white'; this.style.backgroundColor='red';"
-      onmouseout="this.style.color='white'; this.style.backgroundColor='transparent';">
-     Download CSV
-   </a>
+         class="btn btn-outline-light"
+         href="#"
+         download="batch_predictions.csv"
+         style="display: none; padding: 10px 20px; border: 1px solid #fff; border-radius: 5px; color: #ffffff; text-decoration: none; transition: color 0.3s, background-color 0.3s; cursor: pointer;"
+         onmouseover="this.style.color='white'; this.style.backgroundColor='red';"
+         onmouseout="this.style.color='white'; this.style.backgroundColor='transparent';">
+        Download CSV
+      </a>
     </div>
   </div>
+
+  <!-- wordclouds -->
+  <div id="wordclouds-container" style="margin-top: 40px; display: none;">
+    <h2 id="wordclouds-title">WordClouds</h2>
+    <div id="wordclouds"></div>
+  </div>
   
-  
-  <div class="row mt-5 gy-4 text-center">
+<!-- info section -->
+<div id="info-section" class="container my-5">
+  <div class="row gy-5 text-center">
+    
     <div class="col-md-4">
       <div class="info-box">
         <div class="emoji">📊</div>
-        <h5 class="info-title">Sentiment Breakdown</h5>
-        <p class="info-text">See how positive, negative, or neutral your audience really is.</p>
+        <h5 class="info-title">Better Understanding</h5>
+        <p class="info-text">Dive deep into content creation by understanding the users.</p>
       </div>
     </div>
+    
     <div class="col-md-4">
       <div class="info-box">
         <div class="emoji">🗣️</div>
-        <h5 class="info-title">Tone Detection</h5>
-        <p class="info-text">Understand the underlying tone: sarcasm, support, or hate.</p>
+        <h5 class="info-title">Comment Detection</h5>
+        <p class="info-text">Uncover the hidden insights: doubts or feedback in comments.</p>
       </div>
     </div>
+    
     <div class="col-md-4">
       <div class="info-box">
         <div class="emoji">📌</div>
         <h5 class="info-title">Top Insights</h5>
-        <p class="info-text">Get actionable advice based on recurring audience themes.</p>
+        <p class="info-text">Based on different metrics, get to know if your platform is investable or not.</p>
       </div>
     </div>
+
   </div>
 </div>
 
-
 </section>
 
+<!-- pie chart -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
   document.getElementById("analyzeForm").addEventListener("submit", async function(e) {
     e.preventDefault();
@@ -228,7 +313,6 @@
       return;
     }
 
-    // Show loader
     document.getElementById("loader").style.display = "block";
     document.getElementById("resultsSection").style.display = "none";
     document.getElementById("downloadLink").style.display = "none";
@@ -250,10 +334,10 @@
         return;
       }
 
-      const { breakdown, download_link } = data;
+      const { breakdown, download_link, wordclouds } = data;
       showChart(breakdown);
-      renderTopComments(data.top_comments);
-      renderWordclouds(data.wordclouds);
+      renderWordClouds(wordclouds); 
+      
 
       const link = document.getElementById("downloadLink");
       link.href = `http://localhost:5000${download_link}`;
@@ -282,9 +366,9 @@
     const ctx = document.getElementById("categoryChart").getContext("2d");
     const labels = Object.keys(distribution);
     const values = Object.values(distribution);
-    const colors = ["#f94144", "#277da1", "#f9c74f"];
+    const colors = ["#f94144", "#277da1", "#f9c74f", "#43aa8b", "#f3722c", "#577590"];
 
-    if (chartInstance) chartInstance.destroy(); // Destroy old if exists
+    if (chartInstance) chartInstance.destroy();
 
     chartInstance = new Chart(ctx, {
       type: 'doughnut',
@@ -308,33 +392,36 @@
       }
     });
   }
-  // wordcloud
-  function renderWordclouds(wordclouds) {
-    const container = document.getElementById("wordcloudsContainer");
-    container.innerHTML = "";
-  
-    for (const [category, url] of Object.entries(wordclouds)) {
-      const col = document.createElement("div");
-      col.className = "col-md-4 mb-4";
-  
-      const title = document.createElement("h5");
-      title.textContent = `☁️ ${category}`;
-      title.className = "mb-2";
-  
-      const img = document.createElement("img");
-      img.src = url;
-      img.alt = `${category} Word Cloud`;
-      img.className = "img-fluid rounded shadow";
-  
-      col.appendChild(title);
-      col.appendChild(img);
-      container.appendChild(col);
+
+  function renderWordClouds(wordclouds) {
+    const wordcloudsContainer = document.getElementById('wordclouds-container');
+    const wordcloudsDiv = document.getElementById('wordclouds');
+    
+    wordcloudsDiv.innerHTML = '';
+
+    if (!wordclouds || Object.keys(wordclouds).length === 0) {
+        wordcloudsContainer.style.display = 'none';
+        return;
     }
-  
-    document.getElementById("wordcloudsSection").style.display = "block";
-  }
-  
-  
+
+    wordcloudsContainer.style.display = 'block';
+
+    for (const label in wordclouds) {
+        const container = document.createElement('div');
+        container.className = 'wordcloud-card';
+
+        const title = document.createElement('h4');
+        title.textContent = label;
+
+        const img = document.createElement('img');
+        img.src = `http://localhost:7000${wordclouds[label]}`;
+        img.alt = label;
+
+        container.appendChild(title);
+        container.appendChild(img);
+        wordcloudsDiv.appendChild(container);
+    }
+}
 </script>
 
 <%- include("partials/footer.ejs") %>

@@ -18,7 +18,7 @@ def extract_video_id(link):
     match = re.search(r"(?:v=|youtu\.be/)([A-Za-z0-9_-]{11})", link)
     return match.group(1) if match else link
 
-def fetch_top_comments(video_link, max_scrape=10, final_count=5):
+def fetch_top_comments(video_link, max_scrape=500, final_count=200):
     video_id = extract_video_id(video_link)
     youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
@@ -54,6 +54,4 @@ def fetch_top_comments(video_link, max_scrape=10, final_count=5):
     df_sorted.index += 1
     df_sorted.rename(columns={'text': 'Comment'}, inplace=True)
     df_sorted['ID'] = df_sorted.index
-    df_sorted.rename(columns={'like_count': 'Likes'}, inplace=True)
-    return df_sorted[['ID', 'Comment', 'Likes']], video_id
-
+    return df_sorted[['ID', 'Comment']], video_id

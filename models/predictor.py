@@ -4,9 +4,6 @@ import re
 from nltk.stem import PorterStemmer
 from collections import Counter
 from scraping import extract_video_id
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-import os
 
 ps = PorterStemmer()
 tfidf = joblib.load("tfidf_transformer.pkl")
@@ -31,28 +28,8 @@ def predict_categories(df):
     breakdown = dict(Counter(labels))
     percentages = {k: round((v / total) * 100, 2) for k, v in breakdown.items()}
 
-    return df[['ID', 'Comment', 'Likes', 'Label']], {
+    return df[['ID', 'Comment', 'Label']], {
         "video_id": extract_video_id(df['Comment'].iloc[0]),
         "total": total,
         "breakdown": percentages
     }
-
-import shutil
-from flask import current_app
-import uuid
-def generate_wordclouds(result_df):
-    wordcloud_paths = {}
-
-    static_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static", "wordclouds_temp")
-
-    os.makedirs(static_folder, exist_ok=True)
-
-    for label in result_df['Label'].unique():
-        text = " ".join(result_df[result_df['Label'] == label]['Comment'])
-        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
-        filename = f"{label.lower().replace(' ', '_')}.png"
-        file_path = os.path.join(static_folder, filename)
-        wordcloud.to_file(file_path)
-        wordcloud_paths[label] = f"/static/wordclouds_temp/{filename}"
-
-    return wordcloud_paths
