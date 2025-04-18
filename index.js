@@ -8,6 +8,7 @@ dotenv.config();
 const { Pool } = pg;
 const app = express();
 const PORT = process.env.PORT || 7000;
+app.use(express.static('public'));
 
 
 
