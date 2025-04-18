@@ -33,3 +33,24 @@ def predict_categories(df):
         "total": total,
         "breakdown": percentages
     }
+
+from wordcloud import WordCloud
+import os
+
+def generate_wordclouds(result_df):
+    wordcloud_paths = {}
+
+    express_public_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "public", "wordclouds")
+    os.makedirs(express_public_folder, exist_ok=True)
+
+    for label in result_df['Label'].unique():
+        text = " ".join(result_df[result_df['Label'] == label]['Comment'])
+        wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+        filename = f"{label.lower().replace(' ', '_')}.png"
+        file_path = os.path.join(express_public_folder, filename)
+        wordcloud.to_file(file_path)
+
+        wordcloud_paths[label] = f"/wordclouds/{filename}" 
+
+    return wordcloud_paths
