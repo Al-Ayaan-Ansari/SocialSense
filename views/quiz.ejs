@@ -1,0 +1,176 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/navbar.ejs") %>
+
+<style>
+  :root {
+    --primary-color: #FF0000; 
+    --hover-color: #be0000;   
+    --background-color: #121212; 
+    --card-bg: #1F1F1F; 
+    --accent-color: #00BFFF; 
+    --neutral-gray: #A0A0A0;
+    --text-color: #FFFFFF;
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .quiz-section {
+    padding: 20px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  .quiz-wrapper {
+    background-color: var(--card-bg);
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quiz-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,191,255,0.15) 0%, transparent 70%);
+    animation: rotate 6s linear infinite;
+    z-index: 0;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .quiz-wrapper * {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    font-weight: 700;
+  }
+
+  p.subtitle {
+    font-size: 1.2rem;
+    color: var(--neutral-gray);
+    margin-bottom: 40px;
+  }
+
+  .quiz-btn {
+    display: block;
+    margin: 15px auto;
+    padding: 15px 30px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    background: var(--primary-color);
+    border: none;
+    border-radius: 12px;
+    width: 80%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+  }
+
+  .quiz-btn:hover {
+    background: var(--hover-color);
+    transform: scale(1.05);
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: 0 6px 20px rgba(255, 78, 78, 0.5);
+  }
+
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .quiz-btn {
+      font-size: 1rem;
+      width: 90%;
+    }
+  }
+</style>
+
+<section class="quiz-section">
+    <div class="quiz-wrapper">
+      <h1>Pick Your Challenge</h1>
+      <p class="subtitle">Test your skills, beat the clock, and have fun!</p>
+  
+      <a href="/quiz1" class="quiz-btn">
+        📜 Fix the Tweet Quiz
+      </a>
+  
+      <a href="/quiz2" class="quiz-btn">
+        ✏️ Decode the Gen-Z Codes!
+      </a>
+  
+      <div class="guidelines">
+        <h2>📋 Guidelines</h2>
+        <ul>
+          <li>🔄 Each time you load the quiz, you will get 5 random questions.</li>
+          <li>✅ After every question, you'll see the correct answer.</li>
+          <li>🎯 After 5 questions, your score will be shown out of 5.</li>
+          <li>🍀 Best of luck and have fun!</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <style>
+  .guidelines {
+    margin-top: 30px;
+    background: radial-gradient(circle, rgba(0,191,255,0.15) 0%, transparent 70%);
+    padding: 20px;
+    text-align: left;
+    border-radius: 10px;
+    border: 1px solid #00BFFF; 
+    color: #FFFFFF; 
+  }
+  
+  .guidelines h2 {
+    margin-bottom: 15px;
+    color: #ff0000; 
+  }
+  
+  .guidelines ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .guidelines li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+</style>    
+
+<%- include("partials/footer.ejs") %>
