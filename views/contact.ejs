@@ -1,109 +1,170 @@
-<%- include("partials/header.ejs") %>
 <%- include("partials/navbar.ejs") %>
 
 <style>
-    .wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+body {
+  background-color: #121212; 
+  font-family: 'Verdana', 'Geneva', 'Tahoma', sans-serif;
+}
 
-    .contact-box {
-      background-color: #1F1F1F;
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 95%;
-      justify-content: center;
-      display: flex;
-      align-items: center;
-    }
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .contact-info i {
-      color: #f25c05;
-      margin-right: 0.5rem;
+.contact-box {
+  background-color: #1F1F1F; 
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2); 
+}
 
-    }
+h2 {
+  color: #FF0000; 
+}
 
-    .form-control::placeholder {
-      color: #aaa;
-    }
+.text-gray {
+  color: #A0A0A0; 
+}
 
-    .btn-submit {
-      background-color: #f25c05;
-      color: white;
-      border: none;
-    }
+.contact-info p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
 
-    .btn-submit:hover {
-      background-color: #d14f04;
-    }
-    .form-input-area{
-        background-color: #1F1F1F;
-        color: #fff;
-        border: 1px solid #444;
-        caret-color: #fff;
-    }
-    .form-input-area:focus {
-        background-color: #1F1F1F !important;
-        color: #fff !important;
-        border-color: #f25c05 !important; /* optional: orange border on focus */
-        box-shadow: none !important; /* remove Bootstrap's blue outline */
-    }
+.text-link {
+  color: #00BFFF;
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  background-color: transparent;
+}
+
+.form-input {
+  background-color: #121212;
+  color: #FFFFFF;
+  border: 1px solid #A0A0A0;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.form-input::placeholder {
+  color: #A0A0A0;
+}
+
+.form-input:focus {
+  border-color: #00BFFF;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.3);
+}
+
+.btn-submit {
+  background-color: #FF0000; 
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-submit:hover {
+  background-color: #FF4E4E; 
+}
+
+i {
+  font-size: 1.2rem;
+  color: #00BFFF;
+}
+
+@media (max-width: 768px) {
+  .contact-box {
+    padding: 20px;
+  }
+
+  .form-input {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .btn-submit {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-box {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-info p {
+    font-size: 0.95rem;
+  }
+}
+
   </style>
-<body>
-  <div class="wrapper">
-    <div class="contact-box container px-4">
-      <div class="row ">
-        <!-- Contact Info -->
-        <div class="col-12 col-md-6 mb-4">
-          <h2 class="fw-bold">Contact Us</h2>
-          <p>Feel free to use the form or drop us an email.</p>
-          <div class="contact-info mt-4">
-            <p><i class="bi bi-envelope-fill"></i> socialsensejmi@gmail.com</p>
-            <p><i class="bi bi-geo-alt-fill"></i> FET building, Jamia Millia Islamai<br> Okhla Vihar,Jamia Nagar, New Delhi</p>
-          </div>
-        </div>
 
-        <!-- Contact Form -->
-        <div class="col-12 col-md-6">
-          <form action="/contact" method="POST" >
-            <div class="row mb-3">
-              <div class="col">
-                <input type="text" class="form-control form-input-area" name="fName" placeholder="First" required/>
-              </div>
-              <div class="col">
-                <input type="text" class="form-control form-input-area" name="lName" placeholder="Last" required/>
-              </div>
+
+  <div class="wrapper py-5">
+      <div class="contact-box container px-4">
+        <div class="row g-5 align-items-center">
+          
+          <!-- Contact Info -->
+          <div class="col-12 col-md-6 text-white">
+            <h2 class="fw-bold mb-3">Contact Us</h2>
+            <p class="text-gray mb-4">Feel free to use the form below or drop us an email anytime.</p>
+            <div class="contact-info">
+              <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:mohdadnankhan.india@gmail.com" class="text-link">Click to send Mail</a></p>
+              <p><i class="bi bi-geo-alt-fill me-2"></i> FET Building, Jamia Millia Islamia, New Delhi</p>
             </div>
-            <div class="mb-3">
-              <input type="email" class="form-control form-input-area" name="email" placeholder="example@email.com" required/>
-            </div>
-            <div class="mb-3">
-                <select class="form-select form-input-area" name="category" required>
-                  <option value="" disabled selected>Select a category</option>
+          </div>
+  
+          <!-- Contact Form -->
+          <div class="col-12 col-md-6">
+            <form action="/contact" method="POST" class="contact-form">
+              <div class="row mb-3">
+                <div class="col">
+                  <input type="text" class="form-control form-input" name="fName" placeholder="First Name" required>
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control form-input" name="lName" placeholder="Last Name" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input type="email" class="form-control form-input" name="email" placeholder="Email Address" required>
+              </div>
+              <div class="mb-3">
+                <select class="form-select form-input" name="category" required>
+                  <option value="" disabled selected>Select a Category</option>
                   <option value="feedback">Feedback</option>
-                  <option value="general Issue">General Issues</option>
-                  <option value="website Issue">website Issues</option>
-                  <option value="other">others..</option>
+                  <option value="general Issue">General Issue</option>
+                  <option value="website Issue">Website Issue</option>
+                  <option value="other">Other</option>
                 </select>
-            </div>
-            <div class="mb-3">
-              <textarea class="form-control form-input-area" rows="5" name="message" placeholder="Type your message ..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-submit px-4 py-2">Submit</button>
-          </form>
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control form-input" name="message" rows="5" placeholder="Your Message..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-submit w-100 py-2">Submit</button>
+            </form>
+          </div>
+  
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-</body>
 
 
 <%- include("partials/footer.ejs") %>
-</html>
