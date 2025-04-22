@@ -10,8 +10,6 @@ const app = express();
 const PORT = process.env.PORT || 7000;
 app.use(express.static('public'));
 
-
-
 // PostgreSQL Database Connection
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -29,11 +27,11 @@ app.get("/analysis", (req, res) => {
     res.render("analysis.ejs");
 });
 
-const members = [{name:"AL AYAAN ANSARI", role:"Full Stack Developer",img:"/images/logoSocialSense.png"},
-    {name:"Mohd Adnan Khan", role:"ML Engineer",img:"/images/logoSocialSense.png"},
-    {name:"Mohd Ashrah", role:"ML Engineer",img:"/images/logoSocialSense.png"},
-    {name:"Mohd Danish", role:"Back-end Developer",img:"/images/logoSocialSense.png"},
-    {name:"Mohd Anas Ansari", role:"Front-end Developer",img:"/images/logoSocialSense.png"}];
+const members = [{name:"AL AYAAN ANSARI", role:"Full Stack Developer",img:"/images/ayaan.png"},
+    {name:"Mohd Adnan Khan", role:"ML Engineer and Developer",img:"/images/me.png"},
+    {name:"Mohd Ashrah", role:"ML Engineer",img:"/images/ashrah.jpg"},
+    {name:"Mohd Danish", role:"Back-end Developer",img:"/images/danish.jpg"},
+    {name:"Mohd Anas Ansari", role:"Front-end Developer",img:"/images/anas.jpg"}];
 app.get("/about", (req, res) => {
     res.render("about.ejs",{members}) ;
 });
@@ -44,12 +42,16 @@ app.get("/investable", (req, res) => {
 });
 
 
-app.get("/kids", (req, res) => {
-    res.render("kids.ejs");
+app.get("/quiz", (req, res) => {
+    res.render("quiz.ejs");
+});
+app.get('/quiz1', (req, res) => {
+    res.render('quiz1.ejs');
 });
 
-
-
+app.get('/quiz2', (req, res) => {
+    res.render('quiz2.ejs');
+});
 
 app.get("/resources", (req, res) => {
     res.render("resources.ejs");
