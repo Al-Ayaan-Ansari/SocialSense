@@ -7,3 +7,4 @@ joblib
 flask_cors
 dotenv
 wordcloud
+gunicorn
