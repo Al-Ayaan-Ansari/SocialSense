@@ -1,0 +1,306 @@
+<%- include("partials/navbar.ejs") %>
+
+<style>
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .card {
+    background-color: #1F1F1F; 
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  iframe.card-img-top {
+    height: 200px;
+  }
+  
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #00BFFF; 
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #A0A0A0;
+    margin-bottom: 1rem;
+    flex-grow: 1; 
+  }
+  
+  .btn-primary {
+    background-color: #FF0000;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #FF4E4E;
+    transform: scale(1.05);
+  }
+  
+  .text-center h2 {
+    font-size: 2rem;
+    color: #00BFFF;
+  }
+  
+  #random-tip {
+    margin-top: 0.5rem;
+    color: #A0A0A0;
+    font-size: 1.125rem;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .col-md-4 {
+    flex: 1 1 calc(33.333% - 1rem);
+    max-width: calc(33.333% - 1rem);
+    display: flex;
+  }
+  
+  @media (max-width: 992px) {
+    .col-md-4 {
+      flex: 1 1 calc(50% - 1rem);
+      max-width: calc(50% - 1rem);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .col-md-4 {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  
+    .section-title {
+      font-size: 1.5rem;
+    }
+  
+    .card-title {
+      font-size: 1.1rem;
+    }
+  
+    .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  a, button {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  footer {
+    margin-top: 4rem;
+  }  
+  .random-tip-box {
+    background-color: #1F1F1F;
+    border: 2px solid #FF0000;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+    color: #FFFFFF;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .random-tip-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(255, 0, 0, 0.4);
+    border-color: #FF4E4E;
+  }
+  
+  .random-tip-box h2 {
+    color: #FF0000;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .random-tip-box p {
+    font-size: 1.25rem;
+    color: #A0A0A0;
+  }
+  
+  
+</style>
+
+<div class="container my-5">
+  
+<!-- Random Tip Section -->
+<div class="random-tip-box text-center mb-5">
+    <h2 class="fw-bold">Random Tip</h2>
+    <p class="lead mt-3" id="random-tip">Loading tip...</p>
+  </div>  
+
+  <!-- Articles & Books Section -->
+  <div class="resource-section">
+    <h2 class="section-title" style="color: #FF0000;">Recommended Articles & Books</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="https://ahrefs.com/blog/wp-content/uploads/2021/06/blog-content-creation-680x341.png" class="card-img-top" alt="Content Marketing Strategy">
+          <div class="card-body">
+            <h5 class="card-title">Content Creation</h5>
+            <p class="card-text">The Complete Guide for Beginners</p>
+            <a href="https://ahrefs.com/blog/content-creation/" target="_blank" class="btn btn-primary">Read Article</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="https://rockcontent.com/wp-content/uploads/2021/06/content-marketing-jobs.png.webp" class="card-img-top" alt="Content Marketing Strategy">
+          <div class="card-body">
+            <h5 class="card-title">Easy and Effective Content Creation</h5>
+            <p class="card-text">Mastering the intricacies of the content creation process</p>
+            <a href="https://rockcontent.com/blog/content-creation/" target="_blank" class="btn btn-primary">Read Article</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="https://rockcontent.com/wp-content/uploads/2021/09/content-creation-tips.png.webp" class="card-img-top" alt="Content Marketing Strategy">
+          <div class="card-body">
+            <h5 class="card-title">11 Content Creation Tips</h5>
+            <p class="card-text">11 tips to help and improve your content creation process.</p>
+            <a href="https://rockcontent.com/blog/content-creation-tips/" target="_blank" class="btn btn-primary">Read Article</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Cards -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="https://m.media-amazon.com/images/I/41yNuPXGwzL._SY445_SX342_.jpg" class="card-img-top" alt="They Ask You Answer Book">
+          <div class="card-body">
+            <h5 class="card-title">The Content Creator Handbook</h5>
+            <p class="card-text">A powerful guide for content creation by Varun Mayya Achina.</p>
+            <a href="http://amazon.in/Content-Creator-Handbook-Ultimate-Creating/dp/0143465228" target="_blank" class="btn btn-primary">Buy the Book</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="https://www.thetilt.com/wp-content/uploads/2021/04/contentinc_2021.jpeg" class="card-img-top" alt="They Ask You Answer Book">
+          <div class="card-body">
+            <h5 class="card-title">Content INC.</h5>
+            <p class="card-text">The #1 digital business model for the next decade by Joe Pulizzi.</p>
+            <a href="https://www.thetilt.com/content-inc" target="_blank" class="btn btn-primary">Buy the Book</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube Videos Section -->
+<div class="resource-section">
+    <h2 class="section-title" style="color: #FF0000;">YouTube Videos on Content Creation</h2>
+    <div class="row">
+      
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <iframe class="card-img-top" src="https://www.youtube.com/embed/2u_tls_QsXQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">Content Strategy: Create Once, Publish Everywhere</h5>
+            <a href="https://www.youtube.com/watch?v=2u_tls_QsXQ" target="_blank" class="btn btn-primary">Watch Video</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <iframe class="card-img-top" src="https://www.youtube.com/embed/hQDLFJpJobE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">How to Create Better Content Faster</h5>
+            <a href="https://www.youtube.com/watch?v=hQDLFJpJobE" target="_blank" class="btn btn-primary">Watch Video</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <iframe class="card-img-top" src="https://www.youtube.com/embed/n9HUi55yRJ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">Content Marketing Strategy Explained</h5>
+            <a href="https://www.youtube.com/watch?v=n9HUi55yRJ4" target="_blank" class="btn btn-primary">Watch Video</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <iframe class="card-img-top" src="https://www.youtube.com/embed/722F96N64OE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">The Secret to Great Content</h5>
+            <a href="https://www.youtube.com/watch?v=722F96N64OE" target="_blank" class="btn btn-primary">Watch Video</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <iframe class="card-img-top" src="https://www.youtube.com/embed/cN8Pm678ngQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="card-body">
+            <h5 class="card-title">Content Creation for Beginners (Step-by-Step)</h5>
+            <a href="https://www.youtube.com/watch?v=cN8Pm678ngQ" target="_blank" class="btn btn-primary">Watch Video</a>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  </div>
+  
+<script>
+// Fetch Random Tip from the JSON file
+window.onload = () => {
+  fetch('/tips.json')
+    .then(response => response.json())
+    .then(data => {
+      const randomTip = data[Math.floor(Math.random() * data.length)].tip;
+      document.getElementById('random-tip').innerText = randomTip;
+    })
+    .catch(error => console.error('Error fetching tips:', error));
+};
+</script>  
+
+<%- include("partials/footer.ejs") %>
