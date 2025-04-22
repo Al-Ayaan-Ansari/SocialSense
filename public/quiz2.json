@@ -1,0 +1,127 @@
+[
+    {
+      "question": "What does 'BRB' stand for?",
+      "choices": ["Be Right Back", "Better Run Back", "Best Road Buddy", "Be Really Brave"],
+      "answer": "Be Right Back"
+    },
+    {
+      "question": "What does 'LOL' mean?",
+      "choices": ["Lots of Love", "Laugh Out Loud", "Long On Laughs", "Loads of Luck"],
+      "answer": "Laugh Out Loud"
+    },
+    {
+      "question": "What does 'OMG' mean?",
+      "choices": ["On My Guard", "Oh My Goodness", "Only My Goals", "On Many Goals"],
+      "answer": "Oh My Goodness"
+    },
+    {
+      "question": "What is the meaning of 'IDK'?",
+      "choices": ["I Don't Know", "I Drive Knowledge", "I Do Know", "Instant Digital Knowledge"],
+      "answer": "I Don't Know"
+    },
+    {
+      "question": "What does 'SMH' stand for?",
+      "choices": ["Shaking My Head", "So Many Hopes", "Send My Help", "See My Heart"],
+      "answer": "Shaking My Head"
+    },
+    {
+      "question": "Meaning of 'TBH'?",
+      "choices": ["To Be Heard", "To Be Honest", "The Best Hug", "Throw Back Here"],
+      "answer": "To Be Honest"
+    },
+    {
+      "question": "Expand 'ROFL'.",
+      "choices": ["Rolling On the Floor Laughing", "Really Overly Funny Laugh", "Run Over For Laughs", "Random Over Fun Laughs"],
+      "answer": "Rolling On the Floor Laughing"
+    },
+    {
+      "question": "Meaning of 'IYKYK'?",
+      "choices": ["If You Know, You Know", "I Yell, You Keep", "In Your Knowledge, Your Kind", "Instant Yes, Keep Yes"],
+      "answer": "If You Know, You Know"
+    },
+    {
+      "question": "What is 'TMI' short for?",
+      "choices": ["Tell Me Immediately", "Too Much Information", "Take My Idea", "Turn My Internet"],
+      "answer": "Too Much Information"
+    },
+    {
+      "question": "What does 'IMO' mean?",
+      "choices": ["In My Opinion", "Instant Media Option", "I'm On", "Idea Might Operate"],
+      "answer": "In My Opinion"
+    },
+    {
+      "question": "Meaning of 'BFF'?",
+      "choices": ["Best Friends Forever", "Big Fun Festival", "Best For Fun", "Be Free Forever"],
+      "answer": "Best Friends Forever"
+    },
+    {
+      "question": "Meaning of 'GG'?",
+      "choices": ["Good Game", "Giant Group", "Go Go", "Great Guy"],
+      "answer": "Good Game"
+    },
+    {
+      "question": "Expand 'ICYMI'.",
+      "choices": ["I Can Yell More Inside", "In Case You Missed It", "I Create Your Memory Inside", "Instant Connection Your Mind Is"],
+      "answer": "In Case You Missed It"
+    },
+    {
+      "question": "Meaning of 'NVM'?",
+      "choices": ["Never Mind", "No Virtual Money", "Now Very Mad", "Not Very Much"],
+      "answer": "Never Mind"
+    },
+    {
+      "question": "What is 'FOMO'?",
+      "choices": ["Fear Of Missing Out", "Focus On My Options", "Fly Over My Office", "Fast Open My Opportunity"],
+      "answer": "Fear Of Missing Out"
+    },
+    {
+      "question": "What does 'AFK' stand for?",
+      "choices": ["Away From Keyboard", "All Friends Known", "Always Feeling Kind", "Almost Found Knowledge"],
+      "answer": "Away From Keyboard"
+    },
+    {
+      "question": "Meaning of 'YOLO'?",
+      "choices": ["You Only Live Once", "Your Own Loyal Order", "Yes Or Leave Out", "Young Old Loving One"],
+      "answer": "You Only Live Once"
+    },
+    {
+      "question": "Meaning of 'JK'?",
+      "choices": ["Just Kidding", "Joking Kindly", "Jumping Kindly", "Joyful Knowledge"],
+      "answer": "Just Kidding"
+    },
+    {
+      "question": "Expand 'BOP'.",
+      "choices": ["A really good song", "Best Online Post", "Buy Our Product", "Big Old Party"],
+      "answer": "A really good song"
+    },
+    {
+      "question": "Meaning of 'SUS'?",
+      "choices": ["Suspicious", "Super Useful System", "Sudden Unusual Situation", "Surely Useful Step"],
+      "answer": "Suspicious"
+    },
+    {
+      "question": "What does 'FR' mean?",
+      "choices": ["For Real", "Fast Run", "Feel Right", "Free Ride"],
+      "answer": "For Real"
+    },
+    {
+      "question": "What is 'CAP' in slang?",
+      "choices": ["Lie or false statement", "A winning moment", "A cool person", "A small bottle top"],
+      "answer": "Lie or false statement"
+    },
+    {
+      "question": "Meaning of 'NO CAP'?",
+      "choices": ["Telling the truth", "No limit", "No capture", "No option"],
+      "answer": "Telling the truth"
+    },
+    {
+      "question": "What does 'DM' mean?",
+      "choices": ["Direct Message", "Dance Move", "Daily Motivation", "Drive Me"],
+      "answer": "Direct Message"
+    },
+    {
+      "question": "Expand 'ICYDK'.",
+      "choices": ["In Case You Didn't Know", "I Create Your Dynamic Knowledge", "Instant Call You Don't Know", "I Can Your Dynamic Knowledge"],
+      "answer": "In Case You Didn't Know"
+    }
+  ]  
