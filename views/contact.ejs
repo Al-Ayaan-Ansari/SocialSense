@@ -116,55 +116,53 @@ i {
 }
 
   </style>
-
-
+ 
   <div class="wrapper py-5">
-      <div class="contact-box container px-4">
+    <div class="contact-box container px-4">
         <div class="row g-5 align-items-center">
-          
-          <!-- Contact Info -->
-          <div class="col-12 col-md-6 text-white">
-            <h2 class="fw-bold mb-3">Contact Us</h2>
-            <p class="text-gray mb-4">Feel free to use the form below or drop us an email anytime.</p>
-            <div class="contact-info">
-              <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:mohdadnankhan.india@gmail.com" class="text-link">Click to send Mail</a></p>
-              <p><i class="bi bi-geo-alt-fill me-2"></i> FET Building, Jamia Millia Islamia, New Delhi</p>
-            </div>
-          </div>
-  
-          <!-- Contact Form -->
-          <div class="col-12 col-md-6">
-            <form action="/contact" method="POST" class="contact-form">
-              <div class="row mb-3">
-                <div class="col">
-                  <input type="text" class="form-control form-input" name="fName" placeholder="First Name" required>
-                </div>
-                <div class="col">
-                  <input type="text" class="form-control form-input" name="lName" placeholder="Last Name" required>
-                </div>
-              </div>
-              <div class="mb-3">
-                <input type="email" class="form-control form-input" name="email" placeholder="Email Address" required>
-              </div>
-              <div class="mb-3">
-                <select class="form-select form-input" name="category" required>
-                  <option value="" disabled selected>Select a Category</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="general Issue">General Issue</option>
-                  <option value="website Issue">Website Issue</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <textarea class="form-control form-input" name="message" rows="5" placeholder="Your Message..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-submit w-100 py-2">Submit</button>
-            </form>
-          </div>
-  
-        </div>
-      </div>
-    </div>
 
+            <!-- Contact Info -->
+            <div class="col-12 col-md-6 text-white">
+                <h2 class="fw-bold mb-3">Contact Us</h2>
+                <p class="text-gray mb-4">Feel free to use the form below or drop us an email anytime.</p>
+                <div class="contact-info">
+                    <p><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:mohdadnankhan.india@gmail.com" class="text-link">Click to send Mail</a></p>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i> FET Building, Jamia Millia Islamia, New Delhi</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-12 col-md-6">
+                <form action="/contact" method="POST" class="contact-form">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control form-input" name="fName" placeholder="First Name" required>
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control form-input" name="lName" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control form-input" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select form-input" name="category" required>
+                            <option value="" disabled selected>Select a Category</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="general Issue">General Issue</option>
+                            <option value="website Issue">Website Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control form-input" name="message" rows="5" placeholder="Your Message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-submit w-100 py-2">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <%- include("partials/footer.ejs") %>
