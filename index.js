@@ -49,7 +49,7 @@ app.get("/analysis", (req, res) => {
 const members = [
     {name: "AL AYAAN ANSARI", role: "Full Stack Developer", img: "/images/ayaan.png"},
     {name: "Mohd Adnan Khan", role: "ML Engineer and Developer", img: "/images/me.png"},
-    {name: "Mohd Ashrah", role: "ML Engineer", img: "/images/ashrah.jpg"},
+    {name: "Mohd Ashrah", role: "ML Engineer", img: "/images/Ashrah.jpg"},
     {name: "Mohd Danish", role: "Back-end Developer", img: "/images/danish.jpg"},
     {name: "Mohd Anas Ansari", role: "Front-end Developer", img: "/images/anas.jpg"}
 ];
