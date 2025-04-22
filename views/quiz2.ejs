@@ -1,0 +1,351 @@
+<%- include("partials/navbar.ejs") %>
+<style>
+    
+    .outer {
+        width: 100%;
+        min-height: 91vh;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+    }
+    
+    .quiz-box {
+        width: 80%;
+        max-width: 850px;
+        background: #1F1F1F; 
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 191, 255, 0.3); 
+        border: 2px solid #FF0000; 
+    }
+    
+    .quiz-box h1 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        color: #FF0000; 
+        text-decoration: underline;
+        text-underline-offset: 8px;
+    }
+    
+    .quiz-box .question {
+        font-size: 24px;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+    
+    .quiz-box .choices {
+        margin-top: 20px;
+    }
+    
+    .choice {
+        font-size: 20px;
+        background-color: #2C2C2C;
+        color: #FFFFFF;
+        margin: 10px auto;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: left;
+        width: 60%;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        transform: translateY(50%);
+        animation: fade-in 0.5s ease forwards;
+        border: 1px solid transparent;
+    }
+    
+    .choice:hover {
+        background-color: #333333; 
+        border: 1px solid #00BFFF;
+    }
+    
+    .choice.selected {
+        background-color: #00BFFF;
+        color: #121212;
+        font-weight: bold;
+    }
+    
+    .btn1 {
+        width: 60%;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 12px 20px;
+        margin: 20px auto 0 auto;
+        background-color: #FF0000; 
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+    
+    .btn1:hover {
+        background-color: #FF4E4E; 
+    }
+    
+    .scoreCard {
+        font-size: 24px;
+        margin-top: 20px;
+        color: #00BFFF; 
+    }
+    
+    .alert {
+        background-color: #FF4E4E; 
+        color: #FFFFFF;
+        border-radius: 8px;
+        width: 100%;
+        padding: 12px;
+        position: absolute;
+        top: 80px;
+        display: none;
+        text-align: center;
+    }
+    
+    .timer {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background-color: #1F1F1F;
+        border: 2px solid #FF0000;
+        font-size: 24px;
+        font-weight: 600;
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: pulse 1s ease-in-out infinite;
+        color: #FFFFFF;
+    }
+    
+    .footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background: rgba(31, 31, 31, 0.95); 
+        padding: 10px 0;
+        text-align: center;
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes fade-in {
+        0% { opacity: 0; transform: translateY(50%); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+   
+    @media screen and (max-width: 900px) {
+        .quiz-box {
+            width: 95%;
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .quiz-box h1 {
+            font-size: 28px;
+        }
+        .quiz-box .question {
+            font-size: 22px;
+        }
+        .timer {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+        }
+    }
+    
+    @media screen and (max-width: 600px) {
+        .home-btn {
+            width: 80%;
+            font-size: 16px;
+            padding: 10px;
+        }
+    }
+
+    .timer {
+        margin-top: 80px; 
+    }
+
+    </style>    
+    
+</head>
+<body>
+    <div class="outer">
+    <div class="alert">Alert</div>
+    <div class="container quiz-box">
+        <h1>Decode the Gen-Z codes!</h1>
+        <div class="question"></div>
+        <div class="choices"></div>
+        <button class="btn btn1 nextBtn">Next</button>
+        <div class="scoreCard"></div>
+        <div class="timer"></div>
+    </div>
+</div>
+</body>
+    
+<script>
+const container = document.querySelector('.container');
+const questionBox = document.querySelector('.question');
+const choicesBox = document.querySelector('.choices');
+const nextBtn = document.querySelector('.nextBtn');
+const scoreCard = document.querySelector('.scoreCard');
+const alert = document.querySelector('.alert');
+const timer = document.querySelector('.timer');
+
+let quiz = [];
+let selectedQuestions = [];
+let currentQuestionIndex = 0;
+let score = 0;
+let quizOver = false;
+let timeLeft = 20;
+let timerID = null;
+
+// Fetch Questions from JSON
+const fetchQuestions = async () => {
+    try {
+        const response = await fetch('quiz2.json');
+        quiz = await response.json();
+        selectRandomQuestions();
+        startQuiz();
+    } catch (error) {
+        console.error("Error fetching questions:", error);
+    }
+};
+
+// Select 5 Random Questions Without Repetition
+const selectRandomQuestions = () => {
+    const shuffled = [...quiz].sort(() => 0.5 - Math.random());
+    selectedQuestions = shuffled.slice(0, 5);
+};
+
+// Display Questions
+const showQuestions = () => {
+    if (currentQuestionIndex >= selectedQuestions.length) {
+        showScore();
+        return;
+    }
+
+    const questionDetails = selectedQuestions[currentQuestionIndex];
+    questionBox.textContent = questionDetails.question;
+    choicesBox.innerHTML = "";
+
+    questionDetails.choices.forEach(choice => {
+        const choiceDiv = document.createElement('div');
+        choiceDiv.textContent = choice;
+        choiceDiv.classList.add('choice');
+        choicesBox.appendChild(choiceDiv);
+
+        choiceDiv.addEventListener('click', () => {
+            document.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+            choiceDiv.classList.add('selected');
+        });
+    });
+
+    resetTimer();
+};
+
+// Check Answer
+const checkAnswer = () => {
+    const selectedChoice = document.querySelector('.choice.selected');
+    if (!selectedChoice) {
+        displayAlert("Please select an answer!");
+        return;
+    }
+
+    if (selectedChoice.textContent === selectedQuestions[currentQuestionIndex].answer) {
+        displayAlert("Correct Answer!");
+        score++;
+    } else {
+        displayAlert(`Wrong Answer!! The correct answer is: ${selectedQuestions[currentQuestionIndex].answer}`);
+    }
+
+    currentQuestionIndex++;
+    if (currentQuestionIndex < selectedQuestions.length) {
+        showQuestions();
+    } else {
+        stopTimer();
+        showScore();
+    }
+};
+
+// Show Score
+const showScore = () => {
+    questionBox.textContent = "Quiz Completed!";
+    choicesBox.innerHTML = "";
+    scoreCard.textContent = `You Scored ${score} out of ${selectedQuestions.length}!`;
+    displayAlert("Great Job! 🎉");
+    nextBtn.textContent = "Play Again";
+    quizOver = true;
+    timer.style.display = "none";
+};
+
+// Show Alert
+const displayAlert = (msg) => {
+    alert.style.display = "block";
+    alert.textContent = msg;
+    setTimeout(() => {
+        alert.style.display = "none";
+    }, 2000);
+};
+
+// Timer Functions
+const resetTimer = () => {
+    clearInterval(timerID);
+    timeLeft = 15;
+    timer.textContent = timeLeft;
+    timer.style.display = "flex";
+
+    timerID = setInterval(() => {
+        timeLeft--;
+        timer.textContent = timeLeft;
+        if (timeLeft === 0) {
+            displayAlert("Time's Up! Moving to the next question...");
+            currentQuestionIndex++;
+            if (currentQuestionIndex < selectedQuestions.length) {
+                showQuestions();
+            } else {
+                showScore();
+            }
+        }
+    }, 1000);
+};
+
+const stopTimer = () => {
+    clearInterval(timerID);
+};
+
+// Start Quiz
+const startQuiz = () => {
+    timeLeft = 15;
+    timer.style.display = "flex";
+    currentQuestionIndex = 0;
+    score = 0;
+    quizOver = false;
+    showQuestions();
+};
+window.addEventListener('DOMContentLoaded', () => {
+    fetchQuestions();
+});
+
+
+nextBtn.addEventListener('click', () => {
+    if (quizOver) {
+        nextBtn.textContent = "Next";
+        scoreCard.textContent = "";
+        fetchQuestions();
+    } else {
+        checkAnswer();
+    }
+});
+
+</script>
+
+<%- include("partials/footer.ejs") %>
