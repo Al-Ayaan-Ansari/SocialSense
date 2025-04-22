@@ -44,11 +44,9 @@ def fetch_top_comments(video_link, max_scrape=500, final_count=200):
 
         next_page_token = response.get('nextPageToken')
         
-        # Exit conditions
         if not next_page_token or len(comments) >= max_scrape:
             break
 
-    # Adjust if scraped less than requested
     df = pd.DataFrame(comments)
     df_sorted = df.sort_values(by='like_count', ascending=False).head(min(final_count, len(df)))
     df_sorted.reset_index(drop=True, inplace=True)
