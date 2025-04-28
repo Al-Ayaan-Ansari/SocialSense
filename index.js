@@ -100,6 +100,23 @@ app.post("/contact", async (req, res) => {
     }
 });
 
+// get a random tip in resource page
+app.get('/api/random-tip', async (req, res) => {
+    try {
+      const result = await pool.query(`SELECT tip FROM tips ORDER BY RANDOM() LIMIT 1`);
+      const randomTip = result.rows[0]?.tip;
+  
+      if (randomTip) {
+        res.json({ tip: randomTip });
+      } else {
+        res.status(404).json({ error: "No tips found." });
+      }
+    } catch (error) {
+      console.error("Error fetching random tip:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
+  
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
