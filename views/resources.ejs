@@ -94,7 +94,6 @@
   .col-md-4 {
     flex: 1 1 calc(33.333% - 1rem);
     max-width: calc(33.333% - 1rem);
-    display: flex;
   }
   
   @media (max-width: 992px) {
@@ -284,23 +283,20 @@
           </div>
         </div>
       </div>
-  
     </div>
   </div>
+</div>
   
-  </div>
-  
-<script>
-// Fetch Random Tip from the JSON file
-window.onload = () => {
-  fetch('/tips.json')
-    .then(response => response.json())
-    .then(data => {
-      const randomTip = data[Math.floor(Math.random() * data.length)].tip;
-      document.getElementById('random-tip').innerText = randomTip;
-    })
-    .catch(error => console.error('Error fetching tips:', error));
-};
-</script>  
+  <script>
+    // Fetch Random Tip from the backend API
+    window.onload = () => {
+      fetch('/api/random-tip')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('random-tip').innerText = data.tip;
+        })
+        .catch(error => console.error('Error fetching tip:', error));
+    };
+    </script>
 
 <%- include("partials/footer.ejs") %>
