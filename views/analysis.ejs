@@ -413,7 +413,7 @@
       
 
       const link = document.getElementById("downloadLink");
-      link.href = `http://localhost:5000${download_link}`;
+      link.href = `https://socialsense-jhmp.onrender.com${download_link}`;
       link.setAttribute("download", "batch_predictions.csv");
       link.style.display = "inline-block";
 
@@ -487,7 +487,7 @@
         title.textContent = label;
 
         const img = document.createElement('img');
-        img.src = `http://localhost:7000${wordclouds[label]}`;
+        img.src = `https://socialsense-jhmp.onrender.com${wordclouds[label]}`;
         img.alt = label;
 
         container.appendChild(title);
