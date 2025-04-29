@@ -1,0 +1,31 @@
+<%- include('partials/navbar.ejs') %>
+
+<div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="col-md-6">
+    <div class="card p-4 shadow-lg" style="border-radius: 15px; background: #1e1e2f; border: none;">
+      <h2 class="text-center mb-4" style="color: #ff4d4d; font-weight: bold;">Register</h2>
+      <form action="/signup" method="POST">
+        <div class="mb-3">
+          <label for="fullName" class="form-label" style="font-weight: bold; color: #dddddd;">Full Name</label>
+          <input type="text" class="form-control p-2" name="fullName" required style="background: #2c2c3d; color: #ffffff; border: 2px solid #ff4d4d; border-radius: 8px;">
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label" style="font-weight: bold; color: #dddddd;">Email</label>
+          <input type="email" class="form-control p-2" name="email" required style="background: #2c2c3d; color: #ffffff; border: 2px solid #ff4d4d; border-radius: 8px;">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label" style="font-weight: bold; color: #dddddd;">Password</label>
+          <input type="password" class="form-control p-2" name="password" required style="background: #2c2c3d; color: #ffffff; border: 2px solid #ff4d4d; border-radius: 8px;">
+        </div>
+
+        <button type="submit" class="btn w-100" style="background-color: #ff4d4d; color: #ffffff; border-radius: 10px; font-weight: bold; padding: 12px; font-size: 1.2rem; transition: background 0.3s ease, transform 0.2s ease;">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
