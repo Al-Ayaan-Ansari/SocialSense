@@ -151,8 +151,8 @@ app.get('/api/random-tip', async (req, res) => {
         email,
         hashedPassword,
       ]);
-  
-      res.status(201).json({ message: "Signup successful" });
+      
+      res.redirect("/");
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
@@ -178,10 +178,7 @@ app.get('/api/random-tip', async (req, res) => {
         return res.status(401).json({ message: "Invalid credentials" });
       }
   
-      res.status(200).json({
-        message: "Login successful",
-        user: { fullName: user.rows[0].full_name, email: user.rows[0].email },
-      });
+      res.redirect("/"); // Redirect to home page after successful login
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: "Server error" });
